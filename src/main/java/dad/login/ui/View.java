@@ -5,43 +5,61 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
 public class View extends GridPane {
-    private Label UserLabel, PassLabel;
-    private TextField UserField;
-    private PasswordField PassField;
-    private Button Access, Cancel;
-    private HBox ButtonBox;
+
+    private Label userLabel, passLabel;
+    private TextField userField;
+    private PasswordField passField;
+    private Button accessButton, cancelButton;
+    private HBox buttonBox, checkBox;
     private Alert accessAllowed, accessDenied;
+    private CheckBox ldapCheck;
 
     public View() {
 
-        UserLabel = new Label("Usuario: ");
-        PassLabel = new Label("Contraseña: ");
-        UserField = new TextField();
-        UserField.setPromptText("Usuario");
-        PassField = new PasswordField();
-        PassField.setPromptText("Contraseña");
-        Access = new Button("Acceder");
-        Access.setDefaultButton(true);
-        Cancel = new Button("Cancelar");
+        userLabel = new Label("Usuario: ");
+        userLabel.setMaxWidth(Region.USE_PREF_SIZE);
+        passLabel = new Label("Contraseña: ");
+        passLabel.setMaxWidth(Region.USE_PREF_SIZE);
+        userField = new TextField();
+        userField.setPromptText("Usuario");
+        passField = new PasswordField();
+        passField.setPromptText("Contraseña");
+        accessButton = new Button("Acceder");
+        accessButton.setDefaultButton(true);
+        cancelButton = new Button("Cancelar");
+        ldapCheck = new CheckBox("Usar LDAP");
 
+        checkBox = new HBox();
+        //checkBox.setSpacing(10);
+        checkBox.setAlignment(Pos.CENTER);
+        //checkBox.setPadding(new Insets(5));
+        checkBox.getChildren().addAll(ldapCheck);
 
-        ButtonBox = new HBox();
-        ButtonBox.setSpacing(10);
-        ButtonBox.setAlignment(Pos.CENTER);
-        ButtonBox.setPadding(new Insets(5));
-        ButtonBox.getChildren().addAll(Access, Cancel);
-        GridPane.setColumnSpan(ButtonBox, 3);
+        GridPane.setColumnSpan(checkBox, 5);
+
+        buttonBox = new HBox();
+        //buttonBox.setSpacing(10);
+        buttonBox.setAlignment(Pos.CENTER);
+        //buttonBox.setPadding(new Insets(5));
+        buttonBox.getChildren().addAll(accessButton, cancelButton);
+
+        GridPane.setColumnSpan(buttonBox, 4);
+
 
 
         this.setPadding(new Insets(15));
         this.setHgap(35);
         this.setVgap(15);
         this.setAlignment(Pos.CENTER);
-        this.addRow(0, UserLabel, UserField);
-        this.addRow(1, PassLabel, PassField);
-        this.addRow(2, ButtonBox);
+        this.addRow(0, userLabel, userField);
+        this.addRow(1, passLabel, passField);
+        this.addRow(2, checkBox);
+        this.addRow(3, buttonBox);
+
+        //setGridLinesVisible(true);
 
 
         accessAllowed = new Alert(Alert.AlertType.INFORMATION);
@@ -56,38 +74,21 @@ public class View extends GridPane {
     }
 
     public TextField getUserField() {
-        return UserField;
+        return userField;
     }
-
-    public void setUserField(TextField UserField) {
-        this.UserField = UserField;
-    }
-
 
     public TextField getPassField() {
-        return PassField;
-    }
-
-    public void setPassField(PasswordField PswdField) {
-        this.PassField = PswdField;
+        return passField;
     }
 
 
-    public Button getAccess() {
-        return Access;
-    }
-
-    public void setAccess(Button Access) {
-        this.Access = Access;
+    public Button getAccessButton() {
+        return accessButton;
     }
 
 
-    public Button getCancel() {
-        return Cancel;
-    }
-
-    public void setCancel(Button Cancel) {
-        this.Cancel = Cancel;
+    public Button getCancelButton() {
+        return cancelButton;
     }
 
 
@@ -95,16 +96,13 @@ public class View extends GridPane {
         return accessAllowed;
     }
 
-    public void setAccessAllowed(Alert accessAllowed) {
-        this.accessAllowed = accessAllowed;
-    }
-
 
     public Alert getAccessDenied() {
         return accessDenied;
     }
 
-    public void setAccessDenied(Alert accessDenied) {
-        this.accessDenied = accessDenied;
+
+    public CheckBox getLdapCheck() {
+        return ldapCheck;
     }
 }

@@ -1,14 +1,17 @@
 package dad.login.ui;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Model {
-    StringProperty User = new SimpleStringProperty();
-    StringProperty Pswd = new SimpleStringProperty();
+    private StringProperty user = new SimpleStringProperty();
+    private StringProperty pass = new SimpleStringProperty();
+    private BooleanProperty Ldap = new SimpleBooleanProperty();
 
     public final StringProperty UserProperty() {
-        return this.User;
+        return this.user;
     }
 
     public final String getUser() {
@@ -19,15 +22,27 @@ public class Model {
         this.UserProperty().set(User);
     }
 
-    public final StringProperty PswdProperty() {
-        return this.Pswd;
+    public final StringProperty PassProperty() {
+        return this.pass;
     }
 
-    public final String getPswd() {
-        return this.PswdProperty().get();
+    public final String getPass() {
+        return this.PassProperty().get();
     }
 
-    public final void setPswd(final String Pswd) {
-        this.PswdProperty().set(Pswd);
+    public final void setPass(final String pass) {
+        this.PassProperty().set(pass);
+    }
+
+    public boolean getLdap() {
+        return Ldap.get();
+    }
+
+    public BooleanProperty ldapProperty() {
+        return Ldap;
+    }
+
+    public void setLdap(boolean ldap) {
+        this.Ldap.set(ldap);
     }
 }

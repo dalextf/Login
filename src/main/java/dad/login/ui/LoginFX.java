@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class LoginFX extends Application {
-    Controller controller = new Controller();
+    private Controller controller = new Controller();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -16,6 +16,15 @@ public class LoginFX extends Application {
         primaryStage.setTitle("Inicio de Sesión MVC");
         primaryStage.show();
     }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

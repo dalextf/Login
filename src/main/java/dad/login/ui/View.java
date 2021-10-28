@@ -33,17 +33,13 @@ public class View extends GridPane {
         ldapCheck = new CheckBox("Usar LDAP");
 
         checkBox = new HBox();
-        //checkBox.setSpacing(10);
         checkBox.setAlignment(Pos.CENTER);
-        //checkBox.setPadding(new Insets(5));
         checkBox.getChildren().addAll(ldapCheck);
 
         GridPane.setColumnSpan(checkBox, 5);
 
         buttonBox = new HBox();
-        //buttonBox.setSpacing(10);
         buttonBox.setAlignment(Pos.CENTER);
-        //buttonBox.setPadding(new Insets(5));
         buttonBox.getChildren().addAll(accessButton, cancelButton);
 
         GridPane.setColumnSpan(buttonBox, 4);
